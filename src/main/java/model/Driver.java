@@ -9,28 +9,22 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="driver")
 @NamedQuery(name="Driver.findAll", query="SELECT d FROM Driver d")
 public class Driver implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="license_number")
 	private Integer licenseNumber;
-
-	@Column(name="first_name")
 	private String firstName;
-
 	private Integer id;
-
-	@Column(name="last_name")
 	private String lastName;
-
-	@Column(name="policy_id")
-	private Integer policyId;
+	private PolicyDetail policyDetail;
 
 	public Driver() {
 	}
 
+
+	@Id
+	@Column(name="license_number", unique=true, nullable=false)
 	public Integer getLicenseNumber() {
 		return this.licenseNumber;
 	}
@@ -39,6 +33,8 @@ public class Driver implements Serializable {
 		this.licenseNumber = licenseNumber;
 	}
 
+
+	@Column(name="first_name", length=20)
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -46,6 +42,7 @@ public class Driver implements Serializable {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 
 	public Integer getId() {
 		return this.id;
@@ -55,6 +52,8 @@ public class Driver implements Serializable {
 		this.id = id;
 	}
 
+
+	@Column(name="last_name", length=20)
 	public String getLastName() {
 		return this.lastName;
 	}
@@ -63,12 +62,16 @@ public class Driver implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Integer getPolicyId() {
-		return this.policyId;
+
+	//bi-directional many-to-one association to PolicyDetail
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="policyid")
+	public PolicyDetail getPolicyDetail() {
+		return this.policyDetail;
 	}
 
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
+	public void setPolicyDetail(PolicyDetail policyDetail) {
+		this.policyDetail = policyDetail;
 	}
 
 }

@@ -9,24 +9,21 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="vehicle")
 @NamedQuery(name="Vehicle.findAll", query="SELECT v FROM Vehicle v")
 public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
 	private String vin;
-
-	@Column(name="license_plate")
 	private String licensePlate;
-
 	private String model;
-
-	@Column(name="policy_id")
-	private Integer policyId;
+	private PolicyDetail policyDetail;
 
 	public Vehicle() {
 	}
 
+
+	@Id
+	@Column(unique=true, nullable=false, length=15)
 	public String getVin() {
 		return this.vin;
 	}
@@ -35,6 +32,8 @@ public class Vehicle implements Serializable {
 		this.vin = vin;
 	}
 
+
+	@Column(name="license_plate", length=15)
 	public String getLicensePlate() {
 		return this.licensePlate;
 	}
@@ -43,6 +42,8 @@ public class Vehicle implements Serializable {
 		this.licensePlate = licensePlate;
 	}
 
+
+	@Column(length=10)
 	public String getModel() {
 		return this.model;
 	}
@@ -51,12 +52,16 @@ public class Vehicle implements Serializable {
 		this.model = model;
 	}
 
-	public Integer getPolicyId() {
-		return this.policyId;
+
+	//bi-directional many-to-one association to PolicyDetail
+	@ManyToOne
+	@JoinColumn(name="policy_id")
+	public PolicyDetail getPolicyDetail() {
+		return this.policyDetail;
 	}
 
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
+	public void setPolicyDetail(PolicyDetail policyDetail) {
+		this.policyDetail = policyDetail;
 	}
 
 }

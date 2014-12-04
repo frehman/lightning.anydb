@@ -16,24 +16,25 @@ import org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeExcep
  
 public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
  
-  private static final String PERSISTENCE_UNIT_NAME = "emplist-web";
+  private static final String PERSISTENCE_UNIT_NAME = "default";
   private  Map<String, String> properties = new HashMap<String, String>(); 
   public static EntityManagerFactory emf;
   
   @Override
   public ODataJPAContext initializeODataJPAContext()
       throws ODataJPARuntimeException {
- 
+	  System.out.println("IN FACTORY");
     ODataJPAContext oDatJPAContext = this.getODataJPAContext();
+    oDatJPAContext.setDefaultNaming(false);
+    
     try {
      
-    	
     	setDBproperties();
    //   EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     	
-     if(emf == null){
+   if(emf == null){
          emf =  Persistence.createEntityManagerFactory("default", properties);
-     }
+    }
       oDatJPAContext.setEntityManagerFactory(emf);
       oDatJPAContext.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
  
@@ -49,18 +50,17 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
   
   
   public void setDBproperties() throws URISyntaxException{
-	//  String databaseUrl = System.getenv("DATABASE_URL");
-	 
-	  URI dbUri = new URI(System.getenv("DATABASE_URL"));
-	  System.out.println(dbUri);
-	  String username = dbUri.getUserInfo().split(":")[0];
+      System.out.println("getDBproperties");
+      URI dbUri = new URI(System.getenv("DATABASE_URL"));
+      System.out.println(dbUri.getUserInfo());
+      
+      String username = dbUri.getUserInfo().split(":")[0];
+      System.out.println(username);
       String password = dbUri.getUserInfo().split(":")[1];
+      System.out.println(password);
       String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
-	  
-	  
-	//  String jdbcUrl = String.format("jdbc:postgresql://%s:%s/%s?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory", host, port, databaseName);
-	 
+      System.out.println(dbUrl);
 	  properties.put("javax.persistence.jdbc.url", dbUrl );
 	  properties.put("javax.persistence.jdbc.user", username );
 	  properties.put("javax.persistence.jdbc.password", password );

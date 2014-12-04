@@ -54,7 +54,7 @@ public class Vehicle implements Serializable {
 
 
 	//bi-directional many-to-one association to PolicyDetail
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="policy_id")
 	public PolicyDetail getPolicyDetail() {
 		return this.policyDetail;

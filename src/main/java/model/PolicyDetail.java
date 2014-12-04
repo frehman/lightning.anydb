@@ -81,7 +81,7 @@ public class PolicyDetail implements Serializable {
 
 
 	//bi-directional many-to-one association to Vehicle
-	@OneToMany(mappedBy="policyDetail", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="policyDetail", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	public List<Vehicle> getVehicles() {
 		return this.vehicles;
 	}

@@ -28,7 +28,7 @@
  
   <servlet-mapping>
     <servlet-name>ODataServlet</servlet-name>
-    <url-pattern>/emplist.svc/*</url-pattern>
+    <url-pattern>/policy.svc/*</url-pattern>
   </servlet-mapping>
  
 </web-app>

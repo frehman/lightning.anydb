@@ -23,7 +23,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
   @Override
   public ODataJPAContext initializeODataJPAContext()
       throws ODataJPARuntimeException {
-	  System.out.println("IN FACTORY");
+	
     ODataJPAContext oDatJPAContext = this.getODataJPAContext();
     oDatJPAContext.setDefaultNaming(false);
     
@@ -33,8 +33,11 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
    //   EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     	
    if(emf == null){
+    	  System.out.println("Trying to Build emf");
          emf =  Persistence.createEntityManagerFactory("default", properties);
-    }
+   }
+         
+   	  System.out.println("Built emf");
       oDatJPAContext.setEntityManagerFactory(emf);
       oDatJPAContext.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
  

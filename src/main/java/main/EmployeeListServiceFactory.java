@@ -49,6 +49,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
     }
     finally {
     	System.out.println("Close emf");
+    	
     	emf.close();
     	emf = null;
     }

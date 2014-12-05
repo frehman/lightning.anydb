@@ -18,7 +18,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
  
   private static final String PERSISTENCE_UNIT_NAME = "default";
   private  Map<String, String> properties = new HashMap<String, String>(); 
-  public  EntityManagerFactory emf;
+  public static EntityManagerFactory emf;
   
   @Override
   public ODataJPAContext initializeODataJPAContext()
@@ -48,10 +48,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
       throw new RuntimeException(e);
     }
     finally {
-    	System.out.println("Close emf");
-    	
-    	emf.close();
-    	emf = null;
+    
     }
  
   }

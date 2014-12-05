@@ -18,7 +18,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
  
   private static final String PERSISTENCE_UNIT_NAME = "default";
   private  Map<String, String> properties = new HashMap<String, String>(); 
-  public static EntityManagerFactory emf;
+  public  EntityManagerFactory emf;
   
   @Override
   public ODataJPAContext initializeODataJPAContext()
@@ -33,7 +33,7 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
    //   EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     	
    if(emf == null){
-    	  System.out.println("Trying to Build emf");
+    	 System.out.println("Trying to Build emf");
          emf =  Persistence.createEntityManagerFactory("default", properties);
    }
          
@@ -46,7 +46,11 @@ public class EmployeeListServiceFactory extends ODataJPAServiceFactory {
     } catch (Exception e) {
  
       throw new RuntimeException(e);
- 
+    }
+    finally {
+    	System.out.println("Close emf");
+    	emf.close();
+    	emf = null;
     }
  
   }

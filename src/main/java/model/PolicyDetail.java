@@ -16,6 +16,7 @@ public class PolicyDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer policyId;
 	private String customerName;
+	private String ecn;
 	private String policyName;
 	private List<Driver> drivers;
 	private List<Vehicle> vehicles;
@@ -42,6 +43,16 @@ public class PolicyDetail implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+
+	@Column(length=12)
+	public String getEcn() {
+		return this.ecn;
+	}
+
+	public void setEcn(String ecn) {
+		this.ecn = ecn;
 	}
 
 

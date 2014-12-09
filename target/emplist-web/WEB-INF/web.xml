@@ -20,7 +20,7 @@
  
     <init-param>
       <param-name>org.apache.olingo.odata2.service.factory</param-name>
-      <param-value>main.EmployeeListServiceFactory</param-value>
+      <param-value>main.PolicyServiceFactory</param-value>
     </init-param>
  
     <load-on-startup>1</load-on-startup>
@@ -30,5 +30,9 @@
     <servlet-name>ODataServlet</servlet-name>
     <url-pattern>/policy.svc/*</url-pattern>
   </servlet-mapping>
+  
+  <listener>
+    <listener-class>main.PolicyContextLoader</listener-class>
+  </listener>
  
 </web-app>

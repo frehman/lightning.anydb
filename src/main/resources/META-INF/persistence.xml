@@ -7,6 +7,7 @@
          <class>model.Driver</class>
          <class>model.PolicyDetail</class>
          <class>model.Vehicle</class>
+         <class>model.Document</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

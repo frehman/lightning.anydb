@@ -8,6 +8,8 @@
          <class>model.PolicyDetail</class>
          <class>model.Vehicle</class>
          <class>model.Document</class>
+         <class>model.CandidatExternal</class>
+         <class>model.Candidate</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
